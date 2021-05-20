@@ -5,17 +5,19 @@ import * as Location from 'expo-location';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import axios from 'axios';
-import Weather from '../components/Weather';
+import Weather, { ConditionCodes } from '../components/Weather';
 
 const API_KEY = '715a211aefa62396dd1e1f8f79de590e'
 
 export default function TabOneScreen() {
   const [temp, setTemp] = useState<number>(0)
+  const [condition, setCondition] = useState<ConditionCodes>('Sand')
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const getWeather = async (latitude: number, longitude: number) => {
-    const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`)
-    setTemp(data.main.temp)
+    const { data: { main: { temp }, weather } } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`)
+    setTemp(temp)
+    setCondition(weather[0].main)
     setIsLoading(false)
   }
 
@@ -38,7 +40,7 @@ export default function TabOneScreen() {
       <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-      {isLoading ? <Text>Loading1</Text> : <Weather temp={Math.round(temp)} />}
+      {isLoading ? <Text>Loading1</Text> : <Weather temp={Math.round(temp)} condition={condition} />}
 
     </View>
   );
