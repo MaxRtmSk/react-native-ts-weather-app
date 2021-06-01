@@ -1,6 +1,9 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+//Components
+import { FlatList, StyleSheet, View } from 'react-native';
 import ListItem from '../ListItem/ListItem'
+// Styles
+import GlobalStyles from '../../styles/GlobalStyles';
 
 const DATA = [
   {
@@ -19,12 +22,28 @@ const DATA = [
 
 const ListForWeek = () => {
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }: any) => (
     <ListItem title={item.title} />
   );
 
-  return (<FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />)
+  return (
+    <View style={styles.container}>
+      <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
+    </View>
+  )
 }
 
 
 export default ListForWeek
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+  row: {
+
+  }
+});

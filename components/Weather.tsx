@@ -53,15 +53,15 @@ const weatherOptions: any = {
 
 const Weather: FC<WeatherProps> = ({ temp, condition }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.halfContainer}>
         {weatherOptions[condition]()}
         <Text style={styles.temp}>{temp}°</Text>
       </View>
-      <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
+      {/* <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
         <Text style={styles.title}>{temp}°</Text>
         <Text style={styles.subtitle}>{temp}°</Text>
-      </View>
+      </View> */}
     </View >
   );
 }
@@ -100,5 +100,3 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   }
 })
-
-{/* <Ionicons name="ios-rainy" size={24} color="black" /> */ }

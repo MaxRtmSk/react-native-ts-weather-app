@@ -7,6 +7,7 @@ import { Text, View } from '../components/Themed';
 import axios from 'axios';
 import Weather, { ConditionCodes } from '../components/Weather';
 import { LinearGradient } from 'expo-linear-gradient';
+import ListForWeek from '../components/ListForWeek/ListForWeek';
 
 const API_KEY = '715a211aefa62396dd1e1f8f79de590e'
 
@@ -41,8 +42,8 @@ export default function TabOneScreen() {
       colors={['#4c669f', '#3b5998', '#192f6a']}
       style={styles.container}
     >
-      {/* <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
       {isLoading ? <Text>Loading</Text> : <Weather temp={Math.round(temp)} condition={condition} />}
+      <ListForWeek />
     </LinearGradient>
   );
 }
