@@ -1,30 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer';
+import { composeWithDevTools } from 'remote-redux-devtools';
 //Actions
 import { fetchData, fetchDataFulfilled, fetchDataRejected } from './actions';
 
 
+export const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
-
-
-// import { devToolsEnhancer } from 'redux-devtools-extension';
-
-// export const store = createStore(rootReducer, devToolsEnhancer({}))
-
-
-
-
-
-
-
-
-  
-// import { combineReducers } from "redux";
-// import { todoReducer } from "./todoReducer";
-
-// export const rootReducer = combineReducers({
-//   todo: todoReducer,
-// })
-
-// export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

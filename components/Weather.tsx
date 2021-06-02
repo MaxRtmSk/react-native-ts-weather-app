@@ -3,10 +3,11 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from './Themed';
 import { Ionicons, AntDesign, Fontisto, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { ConditionCodes } from '../types/types';
 
-type ConditionAtmospher = 'Mist' | 'Smoke' | 'Haze' | 'Dust' | 'Fog' | 'Sand' | 'Ash' | 'Squall' | 'Tornado'
 
-export type ConditionCodes = 'Thunderstorm' | 'Drizzle' | 'Rain' | 'Snow' | ConditionAtmospher | 'Clear' | 'Clouds'
+
+
 
 interface WeatherProps {
   temp: number,

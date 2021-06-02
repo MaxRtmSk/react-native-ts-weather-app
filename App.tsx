@@ -6,6 +6,7 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { Provider } from 'react-redux';
 import { store } from './store/store'
+import TabOneScreen from './screens/TabOneScreen';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,7 +18,8 @@ export default function App() {
     return (
       <Provider store={store}>
         <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
+          {/* <Navigation colorScheme={colorScheme} /> */}
+          <TabOneScreen />
           <StatusBar />
         </SafeAreaProvider>
       </Provider>

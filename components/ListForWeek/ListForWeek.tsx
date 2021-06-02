@@ -1,34 +1,31 @@
 import React from 'react';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 //Components
 import { FlatList, StyleSheet, View } from 'react-native';
 import ListItem from '../ListItem/ListItem'
+import { useTypedSeletor } from '../../hooks/useTypedSelector';
 // Styles
 import GlobalStyles from '../../styles/GlobalStyles';
+import { Text } from '../Themed';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+
+const renderItem = ({ item }: any) => {
+  console.log(item.dt)
+  return (
+    <ListItem temp={Math.round(item.temp.day)} date={item.dt} />
+  )
+};
+
 
 const ListForWeek = () => {
+  const { weekWeather } = useTypedSeletor(state => state)
 
-  const renderItem = ({ item }: any) => (
-    <ListItem title={item.title} />
-  );
 
   return (
     <View style={styles.container}>
-      <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
+      <View style={styles.titleWrapper}><Text style={styles.title}>Погода на неделю</Text></View>
+      <FlatList style={{ width: '100%' }} data={weekWeather} renderItem={renderItem} keyExtractor={(item) => uuidv4()} />
     </View>
   )
 }
@@ -41,9 +38,17 @@ const styles = StyleSheet.create({
     flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    width: '100%',
+    backgroundColor: '#4b86b4',
+    borderRadius: 20,
   },
-  row: {
+  titleWrapper: {
 
+  },
+  title: {
+    fontFamily: 'Arial',
+    fontWeight: '600',
+    fontSize: 20,
+    paddingVertical: 10,
   }
 });

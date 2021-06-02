@@ -1,8 +1,16 @@
+type ConditionAtmospher = 'Mist' | 'Smoke' | 'Haze' | 'Dust' | 'Fog' | 'Sand' | 'Ash' | 'Squall' | 'Tornado'
+
+export type ConditionCodes = 'Thunderstorm' | 'Drizzle' | 'Rain' | 'Snow' | ConditionAtmospher | 'Clear' | 'Clouds'
+
+export interface INowWeather {
+  condition: ConditionCodes
+  temp: number
+}
 export interface IState {
-  nowWeather: null;
-  weeklyWeather: null;
+  nowWeather: INowWeather;
+  weekWeather: any;
   loading: boolean;
-  errorMessage: null;
+  errorMessage: string;
 }
 
 export enum WeatherActionTypes {
@@ -18,14 +26,17 @@ export interface GetWeatherActions {
 
 export interface GetWeatherFulfilled {
   type: WeatherActionTypes.GET_WEATHER_FULFILLED;
-  payload: null;
+  nowWeather: INowWeather;
+  weekWeather: any;
   loading: boolean;
 }
 
 export interface GetWetherRejected {
   type: WeatherActionTypes.GET_WEATHER_REJECTED;
-  payload: null;
+  payload: string;
   loading: boolean;
 }
 
 export type WeatherAction = GetWeatherActions | GetWeatherFulfilled | GetWetherRejected;
+
+
