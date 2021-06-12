@@ -48,7 +48,7 @@ export default function TabOneScreen() {
 
   return (
     <LinearGradient
-      colors={['#4c669f', '#3b5998', '#192f6a']}
+      colors={['#90caf9', '#3b5998', '#192f6a']}
       style={styles.container}
     >
       {/* {isLoading ? <Text>Loading</Text> : <Weather temp={Math.round(temp)} condition={condition} />} */}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 const unixConvertor = (date: number, type: string) => {
   const milliseconds = date * 1000
@@ -16,15 +16,19 @@ type Props = {
 }
 
 const ListItem: React.FC<Props> = ({ temp, date }) => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.temp}>{unixConvertor(date, 'weekDay')}</Text>
-        <Text style={styles.day}>{unixConvertor(date, 'day')} {unixConvertor(date, 'month')}</Text>
+    <TouchableHighlight onPress={() => console.log('1')}>
+      <View
+        style={styles.containerClose}>
+        <View>
+          <Text style={styles.temp}>{unixConvertor(date, 'weekDay')}</Text>
+          <Text style={styles.day}>{unixConvertor(date, 'day')} {unixConvertor(date, 'month')}</Text>
+        </View>
+        <Text style={styles.temp}>{temp}°</Text>
       </View>
-      <Text style={styles.temp}>{temp}°</Text>
-    </View>
+    </TouchableHighlight>
   )
 }
 
@@ -32,14 +36,12 @@ const ListItem: React.FC<Props> = ({ temp, date }) => {
 export default ListItem
 
 const styles = StyleSheet.create({
-  container: {
+  containerClose: {
     flex: 1,
     paddingVertical: 25,
     paddingHorizontal: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: 'white',
   },
   temp: {
     fontFamily: 'Arial',

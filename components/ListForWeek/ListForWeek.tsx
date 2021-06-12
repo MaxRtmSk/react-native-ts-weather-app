@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { FlatList, StyleSheet, View } from 'react-native';
 import ListItem from '../ListItem/ListItem'
 import { useTypedSeletor } from '../../hooks/useTypedSelector';
+import { LinearGradient } from 'expo-linear-gradient';
 // Styles
 import GlobalStyles from '../../styles/GlobalStyles';
 import { Text } from '../Themed';
@@ -24,9 +25,13 @@ const ListForWeek = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleWrapper}><Text style={styles.title}>Погода на неделю</Text></View>
-      <FlatList style={{ width: '100%' }} data={weekWeather} renderItem={renderItem} keyExtractor={(item) => uuidv4()} />
-    </View>
+      <FlatList
+        style={{ width: '100%' }}
+        data={weekWeather}
+        renderItem={renderItem}
+        keyExtractor={(item) => uuidv4()}
+      />
+    </View >
   )
 }
 
@@ -39,11 +44,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    backgroundColor: '#4b86b4',
+    backgroundColor: '#90caf9',
     borderRadius: 20,
-  },
-  titleWrapper: {
-
   },
   title: {
     fontFamily: 'Arial',

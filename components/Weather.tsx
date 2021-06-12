@@ -59,10 +59,6 @@ const Weather: FC<WeatherProps> = ({ temp, condition }) => {
         {weatherOptions[condition]()}
         <Text style={styles.temp}>{temp}°</Text>
       </View>
-      {/* <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
-        <Text style={styles.title}>{temp}°</Text>
-        <Text style={styles.subtitle}>{temp}°</Text>
-      </View> */}
     </View >
   );
 }
